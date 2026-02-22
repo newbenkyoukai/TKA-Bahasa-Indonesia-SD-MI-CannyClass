@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKA Bahasa Indonesia Kelas 6 SD/MI</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <h1>TKA Bahasa Indonesia</h1>
+                <p class="subtitle">Kelas 6 SD/MI - Tes Kemampuan Akademik</p>
+            </div>
+            <div class="user-info">
+                <span id="userName">Siswa Baru</span>
+                <button onclick="resetTest()" class="btn-reset">Ulang</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <div id="dashboardView" class="view-section active">
+                <div class="welcome-section">
+                    <h2>Selamat Datang di Tes Kemampuan Akademik</h2>
+                    <p>Platform ini dirancang untuk mengukur kemampuan Anda dalam mata pelajaran Bahasa Indonesia sesuai dengan Permendikdasmen No. 9 Tahun 2025.</p>
+                    
+                    <div class="input-section">
+                        <label for="studentName">Nama Siswa:</label>
+                        <input type="text" id="studentName" placeholder="Masukkan nama Anda">
+                        <button onclick="startTest()" class="btn-primary">Mulai Tes</button>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Informasi Tes</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <span class="info-label">Total Paket</span>
+                            <span class="info-value">8</span>
+                        </div>
+                        <div class="info-card">
+                            <span class="info-label">Total Soal/Paket</span>
+                            <span class="info-value">30</span>
+                        </div>
+                        <div class="info-card">
+                            <span class="info-label">Tipe Soal</span>
+                            <span class="info-value">3 Jenis</span>
+                        </div>
+                        <div class="info-card">
+                            <span class="info-label">Durasi</span>
+                            <span class="info-value">Fleksibel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket Selection View -->
+            <div id="paketView" class="view-section">
+                <h2>Pilih Paket Soal</h2>
+                <div class="paket-grid" id="paketGrid">
+                    <!-- Paket akan dimuat di sini -->
+                </div>
+            </div>
+
+            <!-- Test View -->
+            <div id="testView" class="view-section">
+                <div class="test-header">
+                    <div class="test-info">
+                        <span class="paket-name" id="paketName">Paket 1</span>
+                        <span class="soal-counter" id="soalCounter">Soal 1 dari 30</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <div class="test-content">
+                    <!-- Soal akan dimuat di sini -->
+                    <div id="soalContainer"></div>
+                </div>
+
+                <div class="test-navigation">
+                    <button onclick="previousSoal()" class="btn-nav">← Sebelumnya</button>
+                    <button onclick="skipSoal()" class="btn-skip">Skip</button>
+                    <button onclick="nextSoal()" class="btn-nav">Selanjutnya →</button>
+                </div>
+
+                <div class="test-footer">
+                    <button onclick="showStatus()" class="btn-secondary">Lihat Status</button>
+                    <button onclick="finishTest()" class="btn-danger">Selesai</button>
+                </div>
+            </div>
+
+            <!-- Status Modal -->
+            <div id="statusModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeStatus()">&times;</span>
+                    <h3>Status Pengerjaan Soal</h3>
+                    <div class="status-table-container">
+                        <table class="status-table" id="statusTable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Status</th>
+                                    <th>Tipe</th>
+                                </tr>
+                            </thead>
+                            <tbody id="statusTableBody">
+                                <!-- Isi status akan ditambahkan di sini -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="status-summary">
+                        <p><strong>Dikerjakan:</strong> <span id="dikerjakan">0</span></p>
+                        <p><strong>Ragu-ragu:</strong> <span id="raguRagu">0</span></p>
+                        <p><strong>Belum dikerjakan:</strong> <span id="belumDikerjakan">0</span></p>
+                    </div>
+                    <button onclick="closeStatus()" class="btn-primary">Tutup</button>
+                </div>
+            </div>
+
+            <!-- Results View -->
+            <div id="resultsView" class="view-section">
+                <div class="results-container">
+                    <h2>Hasil Tes</h2>
+                    <div class="results-card">
+                        <div class="student-name" id="resultName">-</div>
+                        <div class="paket-name" id="resultPaket">-</div>
+                        
+                        <div class="score-section">
+                            <div class="score-circle">
+                                <div class="score-value" id="scoreValue">0</div>
+                                <div class="score-label">/ 100</div>
+                            </div>
+                            <div class="grade-section">
+                                <div class="grade-badge" id="gradeBadge">KURANG</div>
+                                <p class="grade-description" id="gradeDescription">-</p>
+                            </div>
+                        </div>
+
+                        <div class="results-details">
+                            <h4>Detail Hasil</h4>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <label>Soal Dijawab</label>
+                                    <span id="detailDijawab">0</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Jawaban Benar</label>
+                                    <span id="detailBenar">0</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Jawaban Salah</label>
+                                    <span id="detailSalah">0</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Ragu-ragu</label>
+                                    <span id="detailRagu">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="results-breakdown">
+                            <h4>Rincian Jawaban</h4>
+                            <div id="breakdownContainer">
+                                <!-- Rincian akan ditambahkan di sini -->
+                            </div>
+                        </div>
+
+                        <div class="results-actions">
+                            <button onclick="backToDashboard()" class="btn-primary">Kembali ke Beranda</button>
+                            <button onclick="tryAnotherPaket()" class="btn-secondary">Coba Paket Lain</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 TKA Bahasa Indonesia - Sesuai Permendikdasmen No. 9 Tahun 2025</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
