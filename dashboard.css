@@ -1,75 +1,44 @@
 .dashboard {
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    background-color: #f9f9f9;
     font-family: Arial, sans-serif;
     padding: 20px;
-}
-
-.header {
-    background-color: #4a90e2;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #e94e77;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #d73b68;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.results {
-    background-color: #f8f8f9;
-    padding: 15px;
-    margin: 20px 0;
-    border: 1px solid #ddd;
     border-radius: 8px;
 }
 
-.footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #4a90e2;
-    color: white;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
+.dashboard h1 {
+    color: #333;
+    font-size: 2em;
 }
 
-@media (max-width: 600px) {
-    .header, .footer {
-        font-size: 14px;
-    }
-    .button {
-        width: 100%;
-    }
+.dashboard .widget {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard .widget h2 {
+    color: #555;
+    font-size: 1.5em;
+}
+
+.dashboard .widget p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.dashboard .button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.dashboard .button:hover {
+    background-color: #0056b3;
 }
